@@ -1,4 +1,4 @@
-<h1 align="center">AI-Fresh_Mild_Rotten_Fruit_Classification🍇🍉🍊🍌🍍🍎🍐</h1>
+<h1 align="center">AI-Fresh_Mild_Rotten_Fruit_Classification🍇🍉🍊🍌🍎</h1>
 <h2 align="center">Photo of app📸</h2>
 <br/>
 <div align="center">
