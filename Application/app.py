@@ -1,9 +1,14 @@
 import tkinter as tk
-from tkinter import filedialog, Toplevel
+from tkinter import filedialog, Toplevel, messagebox
 from PIL import Image, ImageTk
 import torch
 from torchvision import transforms
 from pathlib import Path
+from keras.applications.vgg16 import VGG16, preprocess_input
+from keras.preprocessing.image import img_to_array, load_img
+from keras.models import Model
+import numpy as np
+import matplotlib.pyplot as plt
 
 # Define the class names (adjust as per your requirement)
 class_names = {
@@ -27,15 +32,16 @@ preprocess = transforms.Compose([
     transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
 ])
 
-# Define the tkinter application class
 class FruitClassifierApp:
     def __init__(self, root):
         self.root = root
+        self.root.geometry('400x600')
         self.root.title("Fruit Classifier")
         self.root.configure(bg='black')  # Set background color of the root window
         
         self.load_model()  # Load the PyTorch model
-        
+        self.vgg_model = VGG16(weights='imagenet', include_top=True)  # Load VGG16 model with pre-trained weights
+
         # Create UI elements with black background and white text
         self.label = tk.Label(root, text="Fruit Classifier App", font=("Helvetica", 16), bg='black', fg='white')
         self.label.pack(pady=10)
@@ -43,14 +49,23 @@ class FruitClassifierApp:
         self.canvas = tk.Canvas(root, width=300, height=300, bg='black', highlightthickness=0)
         self.canvas.pack(pady=10)
         
-        self.btn_load_image = tk.Button(root, text="Load Image", command=self.load_image, bg='white', fg='black')
+        # Create buttons with dark green background and bold text
+        button_style = {'bg': 'dark green', 'fg': 'white', 'font': ('Helvetica', 12, 'bold')}
+
+        self.label_prediction = tk.Label(root, text="", bg='black', fg='white')
+        self.label_prediction.pack(pady=10) 
+
+        self.btn_load_image = tk.Button(root, text="Load Image", command=self.load_image, **button_style)
         self.btn_load_image.pack(pady=10)
         
-        self.label_prediction = tk.Label(root, text="", bg='black', fg='white')
-        self.label_prediction.pack(pady=10)
+        self.btn_visualize_filters = tk.Button(root, text="Visualize Filters", command=self.visualize_filters, **button_style)
+        self.btn_visualize_filters.pack(pady=10)
+        
+        self.btn_visualize_feature_maps = tk.Button(root, text="Visualize Feature Maps", command=self.visualize_feature_maps, **button_style)
+        self.btn_visualize_feature_maps.pack(pady=10)
         
         self.popup = None  # Initialize popup variable
-        
+
     def load_model(self):
         # Load the model from the specified path
         model_path = Path('C:/CODE/Code/CODE ON GITHUB/AI-Fresh_Mild_Rotten_Fruit_Classification/Model/fruit_classifier.pth')
@@ -68,48 +83,73 @@ class FruitClassifierApp:
             image = image.resize((300, 300)) 
             self.photo = ImageTk.PhotoImage(image)
             self.canvas.create_image(0, 0, anchor="nw", image=self.photo)
-            
-            image_tensor = preprocess(image)
-            image_tensor = image_tensor.unsqueeze(0)
+            self.image_path = file_path  # Store the file path for later use
+            self.predict_image()  # Predict the image right after loading it
 
-            with torch.no_grad():
-                outputs = self.model(image_tensor)
-                _, predicted = torch.max(outputs, 1)
-                prediction = class_names[int(predicted)]
-                self.label_prediction.config(text=f"Predicted: {prediction}")
-                
+    def predict_image(self):
+        if not hasattr(self, 'image_path'):
+            messagebox.showerror("Error", "No image loaded.")
+            return
+        
+        # Load and preprocess the image
+        img = Image.open(self.image_path).convert('RGB')  # Ensure image is in RGB format
+        img = preprocess(img)  # Apply the preprocessing transformations
+        
+        # Add batch dimension: [1, 3, 224, 224]
+        img_tensor = img.unsqueeze(0)
+        
+        # Make prediction
+        with torch.no_grad():
+            self.model.eval()
+            outputs = self.model(img_tensor)
+            _, predicted = torch.max(outputs, 1)
+            class_index = predicted.item()
+        
+        # Update the prediction label
+        prediction = class_names.get(class_index, "Unknown Class")
+        self.label_prediction.config(text=f"Prediction: {prediction}")
 
-            self.show_preprocessed_image(image_tensor, file_path)
+    def visualize_filters(self):
+        # Extract filters from the first convolutional layer
+        filters = self.vgg_model.get_layer('block1_conv1').get_weights()[0]
+        filters = (filters - filters.min()) / (filters.max() - filters.min())
+        n_filters = min(filters.shape[-1], 64)
+        fig, axes = plt.subplots(8, 8, figsize=(8, 8))
+        for i in range(n_filters):
+            f = filters[:, :, :, i]
+            for j in range(3):
+                axes[i // 8, i % 8].imshow(f[:, :, j], cmap='gray')
+                axes[i // 8, i % 8].axis('off')
+        plt.show()
 
-    def show_preprocessed_image(self, image_tensor, file_path):
-        # Close existing popup if it exists
-        if self.popup:
-            self.popup.destroy()
+    def visualize_feature_maps(self):
+        if not hasattr(self, 'image_path'):
+            messagebox.showerror("Error", "Please load an image first.")
+            return
         
-        # Create a new popup window
-        self.popup = Toplevel(self.root)
-        self.popup.title("Preprocessed Image")
-        self.popup.configure(bg='black')
+        img = load_img(self.image_path, target_size=(224, 224))
+        img = img_to_array(img)
+        img = np.expand_dims(img, axis=0)
+        img = preprocess_input(img)
         
-        # Convert tensor back to image for display
-        image = transforms.functional.to_pil_image(image_tensor.squeeze())
+        # Redefine model to output from the last convolutional layer in each block
+        ixs = [1, 3, 6, 8, 11]  # Indices of convolutional layers in VGG16
+        outputs = [self.vgg_model.get_layer(self.vgg_model.layers[i].name).output for i in ixs]
+        model = Model(inputs=self.vgg_model.inputs, outputs=outputs)
         
-        # Display the preprocessed image
-        photo = ImageTk.PhotoImage(image)
-        label_image = tk.Label(self.popup, image=photo, bg='black')
-        label_image.image = photo
-        label_image.pack(padx=20, pady=20)
+        feature_maps = model.predict(img)
         
-        # Display file path as label
-        label_filepath = tk.Label(self.popup, text=f"File: {file_path}", bg='black', fg='white')
-        label_filepath.pack(padx=20, pady=5)
-        
-        # Close button for the popup window
-        btn_close = tk.Button(self.popup, text="Close", command=self.popup.destroy, bg='white', fg='black')
-        btn_close.pack(padx=20, pady=10)
-        
-        # Ensure the popup window stays open
-        self.popup.mainloop()
+        for fmap in feature_maps:
+            square = int(np.sqrt(fmap.shape[-1]))  # Calculate the number of rows and columns
+            fig, axes = plt.subplots(square, square, figsize=(8, 8))
+            ix = 1
+            for i in range(square):
+                for j in range(square):
+                    if ix <= fmap.shape[-1]:
+                        axes[i, j].imshow(fmap[0, :, :, ix-1], cmap='gray')
+                    axes[i, j].axis('off')
+                    ix += 1
+            plt.show()
 
 # Define the neural network model
 class Net(torch.nn.Module):
@@ -138,7 +178,7 @@ class Net(torch.nn.Module):
         x = self.fc2(x)
         return x
 
-# Create the tkinter application
-root = tk.Tk()
-app = FruitClassifierApp(root)
-root.mainloop()
+if __name__ == "__main__":
+    root = tk.Tk()
+    app = FruitClassifierApp(root)
+    root.mainloop()
