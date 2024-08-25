@@ -68,7 +68,9 @@ class FruitClassifierApp:
 
     def load_model(self):
         # Load the model from the specified path
-        model_path = Path('C:/CODE/Code/CODE ON GITHUB/AI-Fresh_Mild_Rotten_Fruit_Classification/Model/fruit_classifier.pth')
+        #C:/CODE(DO NOT DELETE PLS)/AI-Fresh_Mild_Rotten_Fruit_Classification/Model/fruit_classifier.pth
+        #C:/CODE/Code/CODE ON GITHUB/AI-Fresh_Mild_Rotten_Fruit_Classification/Model/fruit_classifier.pth
+        model_path = Path('C:/CODE(DO NOT DELETE PLS)/AI-Fresh_Mild_Rotten_Fruit_Classification/Model/fruit_classifier.pth')
         self.model = Net()
         # Load the model with map_location='cpu'
         self.model.load_state_dict(torch.load(model_path, map_location='cpu'))
