@@ -2,7 +2,7 @@
 <h2 align="center">Photo of app📸</h2>
 <br/>
 <div align="center">
-    <img src="https://github.com/user-attachments/assets/67b17bf1-e794-4ab4-8d17-600fe7a5d1a6" alt="Photo of app" />   
+    <img src="https://github.com/user-attachments/assets/cd98d62e-5949-446a-ad7a-0ce072dbea4e" alt="Photo of app" />   
 </div>
 
 <h2 align="center">Visualize filters</h2>
