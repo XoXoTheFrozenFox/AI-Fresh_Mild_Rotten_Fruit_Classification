@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import filedialog, Toplevel, messagebox
+from tkinter import filedialog, messagebox
 from PIL import Image, ImageTk
 import torch
 from torchvision import transforms
@@ -9,6 +9,16 @@ from keras.preprocessing.image import img_to_array, load_img
 from keras.models import Model
 import numpy as np
 import matplotlib.pyplot as plt
+from dotenv import load_dotenv
+import os
+
+# Load environment variables from .env file
+load_dotenv()
+
+# Get the paths from environment variables
+ICON_PATH = os.getenv('ICON_PATH')
+BACKGROUND_IMAGE_PATH = os.getenv('BACKGROUND_IMAGE_PATH')
+MODEL_PATH = os.getenv('MODEL_PATH')
 
 # Define the class names (adjust as per your requirement)
 class_names = {
@@ -38,7 +48,9 @@ class FruitClassifierApp:
         self.root.geometry('400x600')
         self.root.title("Fruit Classifier")
         self.root.configure(bg='black')  # Set background color of the root window
-        
+
+        # Set the application icon
+        self.root.iconbitmap(ICON_PATH)
         self.load_model()  # Load the PyTorch model
         self.vgg_model = VGG16(weights='imagenet', include_top=True)  # Load VGG16 model with pre-trained weights
 
@@ -65,18 +77,25 @@ class FruitClassifierApp:
         self.btn_visualize_feature_maps.pack(pady=10)
         
         self.popup = None  # Initialize popup variable
+        
+        # Load and display the initial background image
+        self.load_initial_image()
 
     def load_model(self):
         # Load the model from the specified path
-        #C:/CODE(DO NOT DELETE PLS)/AI-Fresh_Mild_Rotten_Fruit_Classification/Model/fruit_classifier.pth
-        #C:/CODE/Code/CODE ON GITHUB/AI-Fresh_Mild_Rotten_Fruit_Classification/Model/fruit_classifier.pth
-        model_path = Path('C:/CODE/Code/CODE ON GITHUB/AI-Fresh_Mild_Rotten_Fruit_Classification/Model/fruit_classifier.pth')
         self.model = Net()
         # Load the model with map_location='cpu'
-        self.model.load_state_dict(torch.load(model_path, map_location='cpu'))
+        self.model.load_state_dict(torch.load(MODEL_PATH, map_location='cpu'))
         self.model.eval()
         print("Model loaded successfully")
 
+    def load_initial_image(self):
+        # Load the background image
+        image = Image.open(BACKGROUND_IMAGE_PATH)
+        image = image.resize((300, 300)) 
+        self.photo = ImageTk.PhotoImage(image)
+        self.canvas.create_image(0, 0, anchor="nw", image=self.photo)
+        
     def load_image(self):
         file_path = filedialog.askopenfilename(initialdir="/", title="Select an Image",
                                             filetypes=(("Image files", "*.jpg;*.jpeg;*.png"), ("All files", "*.*")))
