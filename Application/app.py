@@ -3,7 +3,6 @@ from tkinter import filedialog, messagebox
 from PIL import Image, ImageTk
 import torch
 from torchvision import transforms
-from pathlib import Path
 from keras.applications.vgg16 import VGG16, preprocess_input
 from keras.preprocessing.image import img_to_array, load_img
 from keras.models import Model
