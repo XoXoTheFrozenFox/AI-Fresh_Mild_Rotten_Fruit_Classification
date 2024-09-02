@@ -20,5 +20,5 @@
 <h2 align="center">⚒️ Technologies used ⚒️</h2>
 <br/>
 <div align="center">
-    <img src="https://skillicons.dev/icons?i=github,python,pytorch,vscode" />   
+    <img src="https://skillicons.dev/icons?i=github,python,pytorch,vscode,latex,sklearn" />   
 </div>
