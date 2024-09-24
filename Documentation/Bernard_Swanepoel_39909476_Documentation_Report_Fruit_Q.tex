@@ -100,14 +100,14 @@ The mean and standard deviation values used for normalization are [0.485, 0.456,
 \chapter{Model Details}
 \section{Technologies used in the model}
 \begin{itemize}
-    \item Google Colab: Used as the development environment to write and execute Python code. It provides access to GPU resources, which speeds up the training of your deep learning model.
-    \item PyTorch: Utilized as the AI framework for developing and training the neural network model. PyTorch was used to define the neural network architecture, perform forward and backward passes, and manage the optimization process.
-    \item Torchvision: Used for handling image data and transformations. It was used to load and preprocess the dataset (resizing, normalization) and to create data loaders for efficient batch processing during training and evaluation.
-    \item NumPy: Used for numerical operations and data manipulation, particularly for arrays and performing calculations to model metrics and evaluations.
-    \item Matplotlib: Utilized for visualizing training progress and evaluation results. It was used to plot loss curves, ROC curves, and confusion matrices to assess model performance visually.
-    \item Scikit-learn: Applied for computing performance metrics such as accuracy, precision, recall, F1 score, and ROC AUC. These metrics are crucial for evaluating the model's performance on the test dataset.
-    \item Seaborn: Used for creating enhanced visualizations, such as heatmaps of confusion matrices, to provide more insightful and aesthetically pleasing representations of model evaluation results.
-    \item Google Drive: Used for storing and accessing datasets and model files.
+    \item \textbf{Google Colab}: Used as the development environment to write and execute Python code. It provides access to GPU resources, which speeds up the training of your deep learning model.
+    \item \textbf{PyTorch}: Utilized as the AI framework for developing and training the neural network model. PyTorch was used to define the neural network architecture, perform forward and backward passes, and manage the optimization process.
+    \item \textbf{Torchvision}: Used for handling image data and transformations. It was used to load and preprocess the dataset (resizing, normalization) and to create data loaders for efficient batch processing during training and evaluation.
+    \item \textbf{NumPy}: Used for numerical operations and data manipulation, particularly for arrays and performing calculations to model metrics and evaluations.
+    \item \textbf{Matplotlib}: Utilized for visualizing training progress and evaluation results. It was used to plot loss curves, ROC curves, and confusion matrices to assess model performance visually.
+    \item \textbf{Scikit-learn}: Applied for computing performance metrics such as accuracy, precision, recall, F1 score, and ROC AUC. These metrics are crucial for evaluating the model's performance on the test dataset.
+    \item \textbf{Seaborn}: Used for creating enhanced visualizations, such as heatmaps of confusion matrices, to provide more insightful and aesthetically pleasing representations of model evaluation results.
+    \item \textbf{Google Drive}: Used for storing and accessing datasets and model files.
 \end{itemize}
 \section{Hyperparameters} 
 \begin{figure}[H]
@@ -117,11 +117,10 @@ The mean and standard deviation values used for normalization are [0.485, 0.456,
 \end{figure}
 \subsection{Details of hyperparameters}
 \begin{itemize}
-    \item Trained for 150 epoch with a patience value of 10.
-    The patience value is there to stop the model from overtraining when it can’t improve the model’s loss for 10 consistent epochs.
-    \item Optimizer:  Creates an Adamaoptimizer with a learning rate of 0.001 to update the parameters of the model net during training.
-    \item Cross-Entropy Loss: Defines the loss function for training, specifically Cross-Entropy Loss, which is commonly used for classification tasks. It measures the difference between the predicted class probabilities and the actual class labels.
-    \item Scheduler:  Reduces the learning rate of the optimizer when a monitored metric (e.g., loss) has stopped improving. patience=10 means the learning rate will be reduced after 10 epochs of no improvement, and factor=0.1 specifies that the learning rate will be multiplied by 0.1 when reduced.
+    \item Trained for 150 epoch with a patience value of 10. The patience value is there to stop the model from overtraining when it can't improve the model's loss for 10 consistent epochs.
+    \item \textbf{Optimizer}: Creates an Adamaoptimizer with a learning rate of 0.001 to update the parameters of the model net during training.
+    \item \textbf{Cross-Entropy Loss}: Defines the loss function for training, specifically Cross-Entropy Loss, which is commonly used for classification tasks. It measures the difference between the predicted class probabilities and the actual class labels.
+    \item \textbf{Scheduler}:  Reduces the learning rate of the optimizer when a monitored metric (e.g., loss) has stopped improving. patience=10 means the learning rate will be reduced after 10 epochs of no improvement, and factor=0.1 specifies that the learning rate will be multiplied by 0.1 when reduced.
 \end{itemize}
 \section{Model Architecture: Convolutional Neural Network (CNN)}
 \begin{figure}[H]
@@ -131,12 +130,12 @@ The mean and standard deviation values used for normalization are [0.485, 0.456,
 \end{figure}
 \subsection{Detail of architecture}
 \begin{itemize}
-    \item Conv2D: A filter or kernel "slides" across the 2D input data, carrying out elementwise multiplication.
-    \item BatchNorm2d: The number of dimensions or channels that are produced by the previous layer and enter the batch normalization layer.
-    \item Dropout: Data or noise intentionally excluded from a neural network to enhance processing efficiency and reduce time to results.
-    \item Linear / fully connected:  Applies a linear transformation to the incoming data.
-    \item ReLU: Activation function.
-    \item Def forward:  Defines how the input data passes through the network's layers to produce the output.
+    \item \textbf{Conv2D}: A filter or kernel "slides" across the 2D input data, carrying out elementwise multiplication.
+    \item \textbf{BatchNorm2d}: The number of dimensions or channels that are produced by the previous layer and enter the batch normalization layer.
+    \item \textbf{Dropout}: Data or noise intentionally excluded from a neural network to enhance processing efficiency and reduce time to results.
+    \item \textbf{Linear / fully connected}:  Applies a linear transformation to the incoming data.
+    \item \textbf{ReLU}: Activation function.
+    \item \textbf{Def forward}:  Defines how the input data passes through the network's layers to produce the output.
 \end{itemize}
 \section{Reasons for using ReLU function}
 \begin{itemize}
@@ -151,20 +150,20 @@ The mean and standard deviation values used for normalization are [0.485, 0.456,
 \chapter{App development}
 \section{Technologies used for app}
 \begin{itemize}
-    \item Tkinter: Tkinter is used to build the graphical user interface of the application. It creates the main window (root) and adds various widgets such as labels, buttons, and a canvas. The FruitClassifierApp class uses Tkinter to manage user interactions, such as loading images and visualizing filters.
+    \item \textbf{Tkinter}: Tkinter is used to build the graphical user interface of the application. It creates the main window (root) and adds various widgets such as labels, buttons, and a canvas. The FruitClassifierApp class uses Tkinter to manage user interactions, such as loading images and visualizing filters.
     \begin{figure}[H]
         \centering
         \makebox[\textwidth][c]{\includegraphics[width=0.7\textwidth, height=0.7\textheight, keepaspectratio]{img/UIOfAPP.png}}
         \caption{User inteface of application.}
     \end{figure}
-    \item Pillow(PIL): Pillow is used for handling image operations. In the load\_image method, Pillow loads the selected image, resizes it, and converts it into a format suitable for display in the Tkinter canvas. It also processes the initial background image in the load\_initial\_image method.
-    \item PyTorch: PyTorch is used for defining and running the custom neural network model (Net). It handles loading the model's state, making predictions on the preprocessed images, and performing tensor operations during inference in the predict\_image method.
-    \item Torchvision: Torchvision is used to apply transformations to the input images, such as resizing and normalization, before they are fed into the PyTorch model. The preprocess variable defines these transformations.
-    \item Keras: Keras is used to load the pre-trained VGG16 model and obtain its weights. It also provides the functionality to preprocess images according to the VGG16 model's requirements, which is done in the visualize\_feature\_maps method.
-    \item NumPy: NumPy is used for numerical operations on image arrays and feature maps. It helps in manipulating the arrays for visualization, such as reshaping and normalizing the data for display in matplotlib plots.
-    \item Matplotlib: Matplotlib is used to visualize the filters and feature maps from the VGG16 model. The visualize\_filters and visualize\_feature\_maps methods generate plots to display the internal workings of the model.
-    \item Dotenv: Dotenv is used to load configuration settings from a .env file, such as paths to the icon, background image, and model file. This allows the app to use environment-specific configurations without hardcoding paths in the code.
-    \item OS: The OS module is used to retrieve the paths defined in the .env file. It helps in managing and accessing file paths needed for the application's operation, such as the model file path.
+    \item \textbf{Pillow(PIL)}: Pillow is used for handling image operations. In the load\_image method, Pillow loads the selected image, resizes it, and converts it into a format suitable for display in the Tkinter canvas. It also processes the initial background image in the load\_initial\_image method.
+    \item \textbf{PyTorch}: PyTorch is used for defining and running the custom neural network model (Net). It handles loading the model's state, making predictions on the preprocessed images, and performing tensor operations during inference in the predict\_image method.
+    \item \textbf{Torchvision}: Torchvision is used to apply transformations to the input images, such as resizing and normalization, before they are fed into the PyTorch model. The preprocess variable defines these transformations.
+    \item \textbf{Keras}: Keras is used to load the pre-trained VGG16 model and obtain its weights. It also provides the functionality to preprocess images according to the VGG16 model's requirements, which is done in the visualize\_feature\_maps method.
+    \item \textbf{NumPy}: NumPy is used for numerical operations on image arrays and feature maps. It helps in manipulating the arrays for visualization, such as reshaping and normalizing the data for display in matplotlib plots.
+    \item \textbf{Matplotlib}: Matplotlib is used to visualize the filters and feature maps from the VGG16 model. The visualize\_filters and visualize\_feature\_maps methods generate plots to display the internal workings of the model.
+    \item \textbf{Dotenv}: Dotenv is used to load configuration settings from a .env file, such as paths to the icon, background image, and model file. This allows the app to use environment-specific configurations without hardcoding paths in the code.
+    \item \textbf{OS}: The OS module is used to retrieve the paths defined in the .env file. It helps in managing and accessing file paths needed for the application's operation, such as the model file path.
 \end{itemize}
 \section{Model classes}
 \begin{figure}[H]
@@ -177,10 +176,10 @@ IBM defines XAI as the following: "Explainable artificial intelligence (XAI) is 
 This means that the goal of these visualizations are to get people to trust AI solutions by being able to explain what AI does \citep{IBM_XAI}. Being able to explain something to somebody and giving somebody an understanding of it makes people more likely to trust the solution \citep{IBM_XAI}. This means that businesses would be more likely to implement software solutions that consists out of AI implementations \citep{IBM_XAI}.
 \subsection{Visualizing filters and feature maps}
 \begin{itemize}
-    \item Filter defined: filter (or kernel) is a small matrix of weights used to detect specific features in the input data \citep{vestias2020featuremap}. Filters slide (or convolve) over the input image and perform element-wise multiplication followed by summation to produce a feature map \citep{vestias2020featuremap}.
-    \item Filter function:  Filters are responsible for extracting features from the input. For instance, a filter might detect horizontal edges, vertical edges, or specific textures \citep{vestias2020featuremap}. During training, the weights in the filters are adjusted to improve their ability to detect useful features \citep{vestias2020featuremap}
-    \item Feature map defined: A feature map (or activation map) is the output of applying a filter (also known as a kernel) to an input image or to the previous layer's output \citep{vestias2020featuremap}. It represents the spatial layout of the features detected by the filter in the input \citep{vestias2020featuremap}.
-    \item Feature map function: Each feature map captures different aspects or features of the input data, such as edges, textures, or patterns. For example, in an image processing CNN, a feature map might highlight areas where a particular texture or edge occurs \citep{brownlee2019visualize}.
+    \item \textbf{Filter defined}: filter (or kernel) is a small matrix of weights used to detect specific features in the input data \citep{vestias2020featuremap}. Filters slide (or convolve) over the input image and perform element-wise multiplication followed by summation to produce a feature map \citep{vestias2020featuremap}.
+    \item \textbf{Filter function}:  Filters are responsible for extracting features from the input. For instance, a filter might detect horizontal edges, vertical edges, or specific textures \citep{vestias2020featuremap}. During training, the weights in the filters are adjusted to improve their ability to detect useful features \citep{vestias2020featuremap}
+    \item \textbf{Feature map defined}: A feature map (or activation map) is the output of applying a filter (also known as a kernel) to an input image or to the previous layer's output \citep{vestias2020featuremap}. It represents the spatial layout of the features detected by the filter in the input \citep{vestias2020featuremap}.
+    \item \textbf{Feature map function}: Each feature map captures different aspects or features of the input data, such as edges, textures, or patterns. For example, in an image processing CNN, a feature map might highlight areas where a particular texture or edge occurs \citep{brownlee2019visualize}.
 \end{itemize}
 \subsection{Feature representation}
 \begin{figure}[H]
@@ -202,8 +201,10 @@ Tried training with a loss patience value of 5, but this level of patience was i
 \section{Changing/adding preprocessing techniques}
 Attempted to add additional preprocessing techniques, such as grayscaling and colorization, but these changes did not affect the results.
 \section{Mobile app implementation with React Native and PlayTorch}
-Attempted to implement the model in a React Native app using PlayTorch, but it performed too slowly on mobile devices. An alternative solution would be to host the model online and use API calls, but this approach would incur additional costs. Additionally, the features maps and 
-\chapter{Results}
+Attempted to implement the model in a React Native app using PlayTorch, but it performed too slowly on mobile devices. An alternative solution would be to host the model online and use API calls, but this approach would incur additional costs.
+\section{Experimentation with weighted and macro average}
+Attempted to use macro averaging instead of weighted averaging for my model, but this resulted in poorer performance. Consequently, it was not selected as the main model for the application. The reason behind trying macro averaging was of it being unbiased, as all classes are treated equally. In contrast, weighted averaging is a method in which each value in a dataset is multiplied by a predetermined weight before the final calculation, which can introduce bias because of the uneven classes.
+\chapter{Results (Weighted average)}
 \section{Model Performance}
 The model trained for 107 epochs and achieved an overall accuracy of 93.8\% but struggles to classify between mild bananas and rotten bananas. This could be because of the classes being uneven for the training dataset.
 \section{Early Stopping}
@@ -213,56 +214,141 @@ The best loss value for the model was achieved at epoch 97. The model was traine
 \begin{figure}[H]
     \centering
     \makebox[\textwidth][c]{\includegraphics[width=1.3\textwidth, height=1.3\textheight, keepaspectratio]{img/LossPerEpoch.png}}
-    \caption{Loss per epoch graph.}
+    \caption{Loss per epoch graph (weighted).}
+\end{figure}
+\subsection{Accuracy per epoch (weighted)}
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth, height=1.2\textheight, keepaspectratio]{img/AccuracyPerEpoch.png}}
+    \caption{Accuracy per epoch graph (weighted).}
 \end{figure}
 \subsection{Precision per epoch}
 \begin{figure}[H]
     \centering
     \makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth, height=1.2\textheight, keepaspectratio]{img/PrecisionPerEpoch.png}}
-    \caption{Precision per epoch graph.}
+    \caption{Precision per epoch graph (weighted).}
 \end{figure}
 \subsection{Recall per epoch}
 \begin{figure}[H]
     \centering
     \makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth, height=1.2\textheight, keepaspectratio]{img/RecallPerEpoch.png}}
-    \caption{Recall per epoch graph.}
+    \caption{Recall per epoch graph (weighted).}
 \end{figure}
 \subsection{ROC/AUC per epoch}
 \begin{figure}[H]
     \centering
     \makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth, height=1.2\textheight, keepaspectratio]{img/ROC_AUCPerEpoch.png}}
-    \caption{ROC/AUC per epoch graph.}
+    \caption{ROC/AUC per epoch graph (weighted).}
 \end{figure}
 \subsection{F1score per epoch}
 \begin{figure}[H]
     \centering
     \makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth, height=1.2\textheight, keepaspectratio]{img/F1ScorePerEpoch.png}}
-    \caption{F1score per epoch graph.}
+    \caption{F1score per epoch graph (weighted).}
 \end{figure}
 \subsection{ROC}
 \begin{figure}[H]
     \centering
     \makebox[\textwidth][c]{\includegraphics[width=0.7\textwidth, height=0.7\textheight, keepaspectratio]{img/ROC curve.png}}
-    \caption{ROC graph.}
+    \caption{ROC graph (weighted).}
 \end{figure}
 \subsection{Confusion matrix}
 \begin{figure}[H]
     \centering
     \makebox[\textwidth][c]{\includegraphics[width=0.7\textwidth, height=0.7\textheight, keepaspectratio]{img/Confusion Matrix.png}}
-    \caption{Confusion matrix.}
+    \caption{Confusion matrix (weighted).}
 \end{figure}
 \subsection{Results analysis}
 \begin{itemize}
-    \item Loss per epoch graph: The graph shows that the loss consistently decreases as the training progresses, indicating that the model is learning and improving its predictions. Once the loss reaches a certain threshold, it begins to stabilize, suggesting that the model has converged and further improvements may be minimal.
-    \item Precision per epoch graph: As training progresses, the precision of the model gradually improves, indicating that it's getting better at correctly identifying true positives while reducing false positives. This means the model is becoming more selective and making fewer incorrect positive predictions. Once precision reaches a certain threshold, it stabilizes, suggesting that the model has fine-tuned its ability to focus on the most relevant predictions without further unnecessary improvements.
-    \item Recall per epoch graph: Similarly, recall increases over time, showing that the model is effectively capturing more true positives and reducing false negatives. This reflects the model's growing ability to identify relevant instances in the dataset. Once recall hits a certain level, it stabilizes, indicating that the model has reached a consistent level of sensitivity in finding positive cases, with little room for further enhancement.
-    \item ROC/AUC per epoch graph: This graph shows how the ROC AUC score changes over epochs during training. Initially, the AUC shows fluctuations, indicating variability in model performance as it learns. Over time, the AUC stabilizes around a high value, suggesting that the model is converging and maintaining strong discriminatory ability between classes.
-    \item F1score per epoch graph: The F1 score, which balances precision and recall, shows an upward trend with initial fluctuations, reflecting the model's improving ability to balance false positives and false negatives. Eventually, the score stabilizes, indicating that the model reaches consistent performance in classification tasks.
-    \item ROC graph: The graph shows that the ROC curve almost perfectly follows the left-hand border and then the top border, indicating excellent classification performance.
-    \item Confusion matrix: The diagonal cells represent the correctly classified instances, which are mostly concentrated with high values, indicating that the model performs well across most classes. The off-diagonal cells represent the misclassifications, which appear to be minimal, further reinforcing the model's effectiveness. The model almost perfectly classifies except for class 1 and 2.
+    \item \textbf{Loss per epoch graph}: The graph shows that the loss consistently decreases as the training progresses, indicating that the model is learning and improving its predictions. Once the loss reaches a certain threshold, it begins to stabilize, suggesting that the model has converged and further improvements may be minimal.
+    \item \textbf{Accuracy per epoch graph}: The graph illustrates that the accuracy steadily increases as the training progresses, indicating that the model is effectively learning and enhancing its predictions. Once the accuracy reaches a certain level, it begins to stabilize, suggesting that the model has converged and further improvements may be limited
+    \item \textbf{Precision per epoch graph}: As training progresses, the precision of the model gradually improves, indicating that it's getting better at correctly identifying true positives while reducing false positives. This means the model is becoming more selective and making fewer incorrect positive predictions. Once precision reaches a certain threshold, it stabilizes, suggesting that the model has fine-tuned its ability to focus on the most relevant predictions without further unnecessary improvements.
+    \item \textbf{Recall per epoch graph}: Similarly, recall increases over time, showing that the model is effectively capturing more true positives and reducing false negatives. This reflects the model's growing ability to identify relevant instances in the dataset. Once recall hits a certain level, it stabilizes, indicating that the model has reached a consistent level of sensitivity in finding positive cases, with little room for further enhancement.
+    \item \textbf{ROC/AUC per epoch graph}: This graph shows how the ROC AUC score changes over epochs during training. Initially, the AUC shows fluctuations, indicating variability in model performance as it learns. Over time, the AUC stabilizes around a high value, suggesting that the model is converging and maintaining strong discriminatory ability between classes.
+    \item \textbf{F1score per epoch graph}: The F1 score, which balances precision and recall, shows an upward trend with initial fluctuations, reflecting the model's improving ability to balance false positives and false negatives. Eventually, the score stabilizes, indicating that the model reaches consistent performance in classification tasks.
+    \item \textbf{ROC graph}: The graph shows that the ROC curve almost perfectly follows the left-hand border and then the top border, indicating excellent classification performance.
+    \item \textbf{Confusion matrix}: The diagonal cells represent the correctly classified instances, which are mostly concentrated with high values, indicating that the model performs well across most classes. The off-diagonal cells represent the misclassifications, which appear to be minimal, further reinforcing the model's effectiveness. The model almost perfectly classifies except for class 1 and 2.
+\end{itemize}
+\chapter{Results (Macro average)}
+\section{Model Performance}
+The model trained for 107 epochs and achieved an overall accuracy of 91.8\% but also struggled to classify between mild bananas and rotten bananas. This accuracy is worse than that of the weighted average model, but it serves as one of the experiments conducted for this project.
+\section{Early Stopping}
+The best loss value for the model was achieved at epoch 80. The model was trained for an additional 10 epochs, but no improvement in the loss value was observed. Consequently, training was terminated, and the model with the lowest loss value was saved.
+\section{Graphs}
+\subsection{Loss per epoch (macro)}
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=1.3\textwidth, height=1.3\textheight, keepaspectratio]{img/LossPerEpochMacro.png}}
+    \caption{Loss per epoch graph (macro).}
+\end{figure}
+\subsection{Accuracy per epoch (macro)}
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth, height=1.2\textheight, keepaspectratio]{img/AccuracyPerEpochMacro.png}}
+    \caption{Accuracy per epoch graph (macro).}
+\end{figure}
+\subsection{Precision per epoch (macro)}
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth, height=1.2\textheight, keepaspectratio]{img/PrecisionPerEpochMacro.png}}
+    \caption{Precision per epoch graph (macro).}
+\end{figure}
+\subsection{Recall per epoch (macro)}
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth, height=1.2\textheight, keepaspectratio]{img/RecallPerEpochMacro.png}}
+    \caption{Recall per epoch graph (macro).}
+\end{figure}
+\subsection{ROC/AUC per epoch (macro)}
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth, height=1.2\textheight, keepaspectratio]{img/ROCAUCperEpochMacro.png}}
+    \caption{ROC/AUC per epoch graph (macro).}
+\end{figure}
+\subsection{F1score per epoch (macro)}
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth, height=1.2\textheight, keepaspectratio]{img/f1PerEpochMacro.png}}
+    \caption{F1score per epoch graph (macro).}
+\end{figure}
+\subsection{ROC (macro)}
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=0.7\textwidth, height=0.7\textheight, keepaspectratio]{img/ROCcurveMacro.png}}
+    \caption{ROC graph (macro).}
+\end{figure}
+\subsection{Confusion matrix (macro)}
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=0.7\textwidth, height=0.7\textheight, keepaspectratio]{img/ConfusionMatrixMacro.png}}
+    \caption{Confusion matrix (macro).}
+\end{figure}
+\begin{itemize}
+    \item \textbf{Loss per epoch graph}: The graph shows that the loss consistently decreases as the training progresses, indicating that the model is learning and improving its predictions. Once the loss reaches a certain threshold, it begins to stabilize, suggesting that the model has converged and further improvements may be minimal. \textbf{The final loss value obtained using macro averaging was not as low as that of the weighted average model.}
+    \item \textbf{Accuracy per epoch graph}: The graph illustrates that the accuracy steadily increases as the training progresses, indicating that the model is effectively learning and enhancing its predictions. Once the accuracy reaches a certain level, it begins to stabilize, suggesting that the model has converged and further improvements may be limited. \textbf{The final accuracy value obtained using macro averaging was not as high as that of the weighted average model.}
+    \item \textbf{Precision per epoch graph}: As training progresses, the precision of the model gradually improves, indicating that it's getting better at correctly identifying true positives while reducing false positives. This means the model is becoming more selective and making fewer incorrect positive predictions. Once precision reaches a certain threshold, it stabilizes, suggesting that the model has fine-tuned its ability to focus on the most relevant predictions without further unnecessary improvements. \textbf{The final precision value obtained using macro averaging was not as high as that of the weighted average model.}
+    \item \textbf{Recall per epoch graph}: Similarly, recall increases over time, showing that the model is effectively capturing more true positives and reducing false negatives. This reflects the model's growing ability to identify relevant instances in the dataset. Once recall hits a certain level, it stabilizes, indicating that the model has reached a consistent level of sensitivity in finding positive cases, with little room for further enhancement. \textbf{The final recall value obtained using macro averaging was not as high as that of the weighted average model.}
+    \item \textbf{ROC/AUC per epoch graph}: This graph shows how the ROC AUC score changes over epochs during training. Initially, the AUC shows fluctuations, indicating variability in model performance as it learns. Over time, the AUC stabilizes around a high value, suggesting that the model is converging and maintaining strong discriminatory ability between classes. \textbf{The final ROC\_AUC value obtained using macro averaging was not as high as that of the weighted average model.}
+    \item \textbf{F1score per epoch graph}: The F1 score, which balances precision and recall, shows an upward trend with initial fluctuations, reflecting the model's improving ability to balance false positives and false negatives. Eventually, the score stabilizes, indicating that the model reaches consistent performance in classification tasks. \textbf{The final f1score value obtained using macro averaging was not as high as that of the weighted average model.}
+    \item \textbf{ROC graph}: The graph shows that the ROC curve almost perfectly follows the left-hand border and then the top border, indicating excellent classification performance. \textbf{The final ROC graph results of the weighted average is better than that of the macro average model.}
+    \item \textbf{Confusion matrix}: The diagonal cells represent the correctly classified instances, which are mostly concentrated with high values, indicating that the model performs well across most classes. The off-diagonal cells represent the misclassifications, which appear to be minimal, further reinforcing the model's effectiveness. The model almost perfectly classifies except for class 1, 2, 7 and 8. \textbf{This represents more incorrect classifications than the weighted model, making it less effective.}
 \end{itemize}
 \chapter{Conclusion}
 In conclusion, this project successfully achieved its objectives by building and optimizing a Convolutional Neural Network (CNN) for image classification. Through various experiments, including adjustments to model architecture, hyperparameters, and preprocessing techniques, the model's performance was significantly improved. The use of Explainable AI techniques provided valuable insights into the model's behavior, enhancing the understanding of how it makes predictions. The implementation of the application demonstrated the practical application of the model, enabling real-time classification on devices. Overall, the project contributes to the field of image classification by combining model optimization with real-world deployment and explainability.
-\bibliography{MyBib}
+\section{Flaws in this research}
+The following flaws are present in this study:
+\begin{itemize}
+    \item \textbf{Uneven dataset}: More data can be collected for each fruit class to ensure a balanced dataset.
+    \item \textbf{Better architecture}: With a deeper understanding of the mathematics behind neural networks, a more effective architecture can be developed for this classification problem.
+\end{itemize}
+\section{Future work}
+The following work can be done in the future for this study:
+\begin{itemize}
+    \item \textbf{Implement with OpenCV and Camera}: Integrate the model with OpenCV to enable real-time fruit classification using a camera, allowing for practical applications in various settings, such as grocery stores or agricultural monitoring.
 
+    \item \textbf{Develop a Better Model}: Explore advanced machine learning techniques and architectures, such as convolutional neural networks (CNNs) or transfer learning, to enhance the model's performance and accuracy in fruit classification.
+    
+    \item \textbf{Introduce More Fruit Varieties}: Expand the dataset to include a wider variety of fruits, which would improve the model's robustness and generalization capabilities, making it applicable to a broader range of real-world scenarios.
+\end{itemize}
+\bibliography{MyBib}
 \end{document}
